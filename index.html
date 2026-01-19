@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop The Balloons</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- UI Overlay -->
+        <div id="ui-layer">
+            <div id="score-block">
+                <div id="score-display">Score: <span id="score">0</span></div>
+                <div id="money-display">Cash: $<span id="money">0</span></div>
+            </div>
+            <div id="high-score-display">High Score: <span id="high-score">0</span></div>
+            
+            <button id="upgrade-btn">Upgrades (Space)</button>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <h1>POP THE BALLOONS</h1>
+            <div class="difficulty-select">
+                <button class="diff-btn" data-mode="easy">Easy</button>
+                <button class="diff-btn" data-mode="medium">Medium</button>
+                <button class="diff-btn" data-mode="nuclear">NUCLEAR</button>
+            </div>
+            <div id="leaderboard-preview">
+                <h3>Top 10 Scores</h3>
+                <ul id="top-scores-list"></ul>
+            </div>
+        </div>
+
+        <!-- Upgrade Menu (Hidden by default) -->
+        <div id="upgrade-menu" class="hidden">
+            <h2>Upgrades</h2>
+            <div class="upgrade-item">
+                <p>Fire Rate Buff</p>
+                <p>Cost: <span id="cost-firerate">100</span></p>
+                <div class="progress-bar"><div id="bar-firerate"></div></div>
+                <button id="buy-firerate">Buy</button>
+            </div>
+            <div class="upgrade-item">
+                <p>Multi-Shot</p>
+                <p>Cost: <span id="cost-multishot">200</span></p>
+                <div class="progress-bar"><div id="bar-multishot"></div></div>
+                <button id="buy-multishot">Buy</button>
+            </div>
+            <p class="hint">Press Q or Click Here to Close</p>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <h1 id="go-title">GAME OVER</h1>
+            <p>Score: <span id="final-score">0</span></p>
+            <input type="text" id="player-name" placeholder="Enter Name for Leaderboard" maxlength="10">
+            <button id="save-score-btn">Save & Menu</button>
+            <button id="restart-btn">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
