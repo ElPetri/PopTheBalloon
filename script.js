@@ -671,7 +671,10 @@ function endGame() {
     gameState = 'GAMEOVER';
     finalScoreEl.innerText = score;
     gameOverScreen.classList.remove('hidden');
-    Sound.playTPause() {
+    Sound.playTone(100, 'sawtooth', 0.5);
+}
+
+function togglePause() {
     if (gameState === 'PLAYING') {
         gameState = 'PAUSED';
         upgradeMenu.classList.remove('hidden');
@@ -685,11 +688,6 @@ function endGame() {
         loopId = requestAnimationFrame(gameLoop);
     }
 }
-
-function buyUpgrade(type) {
-    const upg = upgrades[type];
-    if (upg.level >= MAX_UPGRADES) return;
-    // Allow buying in PAUSED state too
 
 function buyUpgrade(type) {
     const upg = upgrades[type];
