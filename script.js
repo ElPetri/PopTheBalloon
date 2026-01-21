@@ -438,6 +438,7 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
 });
 
 document.getElementById('upgrade-btn').addEventListener('click', toggleUpgradeMenu);
+document.getElementById('close-menu-btn').addEventListener('click', toggleUpgradeMenu);
 document.getElementById('buy-firerate').addEventListener('click', () => buyUpgrade('fireRate'));
 document.getElementById('buy-multishot').addEventListener('click', () => buyUpgrade('multiShot'));
 document.getElementById('buy-shotgun').addEventListener('click', () => unlockWeapon('shotgun'));
