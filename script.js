@@ -295,10 +295,13 @@ class Balloon {
         
         // Difficulty scaling
         let speedBase = 1.0 + (wave * 0.1); 
-        // 60fps * (0.5 to 2.0) ~ 30 to 120 px/s? No, previously was per frame.
-        // Old: 0.5 to 2.0 per frame. @60fps = 30 to 120 px/s.
-        // Let's speed it up slightly for exciting gameplay. 60 - 180 px/s
         
+        // Slower on Easy, specially on Mobile
+        if (difficulty === 'easy') {
+            speedBase *= 0.8;
+            if (canvas.width < 768) speedBase *= 0.75;
+        }
+
         let moveSpeed = (60 + Math.random() * 120) * speedBase;
         
         let hpBase = 1 + Math.floor(wave / 2);
