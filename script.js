@@ -19,6 +19,7 @@ const finalScoreEl = document.getElementById('final-score');
 const playerNameInput = document.getElementById('player-name');
 const topScoresList = document.getElementById('top-scores-list');
 const audioToggleBtn = document.getElementById('audio-btn');
+const pauseBtn = document.getElementById('pause-btn');
 
 // Game State
 let gameState = 'START';
@@ -421,8 +422,11 @@ canvas.addEventListener('touchmove', (e) => {
 }, { passive: false });
 
 document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' || e.code === 'KeyQ' || e.code === 'Escape') {
+        if (gameState === 'PLAYING' || gameState === 'PAUSED') togglePause();
+    }
+    
     if (gameState === 'PLAYING') {
-        if (e.code === 'Space' || e.code === 'KeyQ') toggleUpgradeMenu();
         if (e.code === 'Digit1') equipWeapon('standard');
         if (e.code === 'Digit2') equipWeapon('shotgun');
         if (e.code === 'Digit3') equipWeapon('laser');
@@ -437,8 +441,9 @@ document.querySelectorAll('.diff-btn').forEach(btn => {
     });
 });
 
-document.getElementById('upgrade-btn').addEventListener('click', toggleUpgradeMenu);
-document.getElementById('close-menu-btn').addEventListener('click', toggleUpgradeMenu);
+document.getElementById('upgrade-btn').addEventListener('click', togglePause);
+document.getElementById('close-menu-btn').addEventListener('click', togglePause);
+document.getElementById('pause-btn').addEventListener('click', togglePause);
 document.getElementById('buy-firerate').addEventListener('click', () => buyUpgrade('fireRate'));
 document.getElementById('buy-multishot').addEventListener('click', () => buyUpgrade('multiShot'));
 document.getElementById('buy-shotgun').addEventListener('click', () => unlockWeapon('shotgun'));
@@ -666,15 +671,25 @@ function endGame() {
     gameState = 'GAMEOVER';
     finalScoreEl.innerText = score;
     gameOverScreen.classList.remove('hidden');
-    Sound.playTone(100, 'sawtooth', 1.0, 0.3);
-    cancelAnimationFrame(loopId); // Stop loop
+    Sound.playTPause() {
+    if (gameState === 'PLAYING') {
+        gameState = 'PAUSED';
+        upgradeMenu.classList.remove('hidden');
+        pauseBtn.innerText = "▶"; // Change icon to Play
+        updateUpgradeUI();
+    } else if (gameState === 'PAUSED') {
+        gameState = 'PLAYING';
+        upgradeMenu.classList.add('hidden');
+        pauseBtn.innerText = "⏸"; // Change icon back to Pause
+        lastTime = performance.now(); // Essential to prevent huge DT jump
+        loopId = requestAnimationFrame(gameLoop);
+    }
 }
 
-function toggleUpgradeMenu() {
-    if (gameState !== 'PLAYING') return;
-    upgradeMenu.classList.toggle('hidden');
-    updateUpgradeUI();
-}
+function buyUpgrade(type) {
+    const upg = upgrades[type];
+    if (upg.level >= MAX_UPGRADES) return;
+    // Allow buying in PAUSED state too
 
 function buyUpgrade(type) {
     const upg = upgrades[type];

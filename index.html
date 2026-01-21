@@ -21,7 +21,10 @@
             <div id="high-score-display">High Score: <span id="high-score">0</span></div>
             
             <button id="upgrade-btn">Upgrades (Space)</button>
-            <button id="audio-btn" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 24px; cursor: pointer;">🔇</button>
+            <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 10px;">
+                <button id="pause-btn" style="background: transparent; border: none; font-size: 24px; cursor: pointer;">⏸</button>
+                <button id="audio-btn" style="background: transparent; border: none; font-size: 24px; cursor: pointer;">🔇</button>
+            </div>
         </div>
 
         <!-- Start Screen -->
@@ -35,10 +38,12 @@
             <div id="leaderboard-preview">
                 <h3>Top 10 Scores</h3>
                 <ul id="top-scores-list"></ul>
-            </div>
-        </div>
-
-        <!-- Upgrade Menu (Hidden by default) -->
+            </div>Act as Pause Screen) -->
+        <div id="upgrade-menu" class="hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0; color: var(--neon-pink);">PAUSED / UPGRADES</h2>
+                <button id="close-menu-btn" style="background: transparent; border: none; font-size: 24px; color: var(--neon-pink); cursor: pointer; font-family: sans-serif;">▶ RESUME</button>
+            </dividden by default) -->
         <div id="upgrade-menu" class="hidden">
             <button id="close-menu-btn" style="position: absolute; top: 10px; right: 10px; background: transparent; border: none; font-size: 24px; color: var(--neon-pink); cursor: pointer; font-family: sans-serif;">❌</button>
             <h2>Upgrades</h2>
