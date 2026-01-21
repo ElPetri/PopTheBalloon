@@ -16,10 +16,12 @@
             <div id="score-block">
                 <div id="score-display">Score: <span id="score">0</span></div>
                 <div id="money-display">Cash: $<span id="money">0</span></div>
+                <div id="wave-display" style="color: var(--neon-pink); font-size: 18px; margin-top: 5px;">Wave: <span id="wave">1</span></div>
             </div>
             <div id="high-score-display">High Score: <span id="high-score">0</span></div>
             
             <button id="upgrade-btn">Upgrades (Space)</button>
+            <button id="audio-btn" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; font-size: 24px; cursor: pointer;">🔇</button>
         </div>
 
         <!-- Start Screen -->
@@ -51,6 +53,19 @@
                 <div class="progress-bar"><div id="bar-multishot"></div></div>
                 <button id="buy-multishot">Buy</button>
             </div>
+            
+            <!-- New Weapons -->
+            <div class="upgrade-item">
+                <p>Unlock Shotgun</p>
+                <p>Cost: <span id="cost-shotgun">1000</span></p>
+                <button id="buy-shotgun">Purchase</button>
+            </div>
+            <div class="upgrade-item">
+                <p>Unlock Laser</p>
+                <p>Cost: <span id="cost-laser">2500</span></p>
+                <button id="buy-laser">Purchase</button>
+            </div>
+        </div>
             <p class="hint">Press Q or Click Here to Close</p>
         </div>
 
